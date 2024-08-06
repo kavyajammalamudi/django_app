@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body text-center p-4">
+                    <img src="{% static 'images/profile_avatar.png' %}" alt="User Avatar" style="height:80px;width:80px;margin-left:380px;" class="img-fluid rounded-circle mb-3 mx-auto d-block">
+                    <h5 class="card-title text-center mb-3">Id: {{ user.student_id}} </h5>
+                    
+                    <div class="text-center">
+                        <a href="#" class="btn btn-primary btn-sm" style="margin-left:370px;text-decoration: none;">
+                            <i class="fas fa-edit"></i> Edit Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="card-title text-center mb-3">Profile Information</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item py-3">
+                            <i class="fas fa-user fa-2x text-primary mr-3"></i>
+                            <span class="text-center">{{ user.first_name }} {{user.last_name}}</span>
+                        </li>
+                        <li class="list-group-item py-3">
+                            <i class="fas fa-envelope fa-2x text-primary mr-3"></i>
+                            <span class="text-center">{{ user.email }}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body p-4">
+                    <h5 class="card-title text-center mb-3">Course Progress</h5>
+                    <ul class="list-group list-group-flush">
+                        {% for course in user.courses.all %}
+                            <li class="list-group-item py-3">
+                                <i class="fas fa-book fa-2x text-primary mr-3"></i>
+                                <span class="text-center">{{ course.title }} ({{ course.progress }}%)</span>
+                            </li>
+                        {% empty %}
+                            <li class="list-group-item text-center py-3">No courses enrolled.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    .card {
+        border-radius: 10px;
+        background-color: #fff;
+        padding: 0;
+        margin-bottom: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-weight: bold;
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .list-group-item {
+        border: none;
+        padding: 10px;
+    }
+
+    .list-group-item:hover {
+        background-color: #f5f5f5;
+    }
+
+    .fas {
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: #337ab7;
+        border-color: #337ab7;
+        color: #fff;
+    }
+
+    .btn-primary:hover {
+        background-color: #23527c;
+        border-color: #23527c;
+    }
+</style>
+{% endblock %}

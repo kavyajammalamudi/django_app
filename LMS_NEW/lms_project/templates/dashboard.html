@@ -1,0 +1,73 @@
+<!-- templates/dashboard.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Dashboard</h1>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="card-deck d-flex flex-wrap justify-content-center">
+            {% for course in courses %}
+            <div class="card mb-4" style="width:260px; margin: 10px;">
+                <div class="card-img-wrapper position-relative">
+                    <img src="{% static course.image %}" class="card-img-top" alt="{{ course.title }} Image" style="height: 160px;width:260px; object-fit: cover; border-radius: 10px 10px 0 0;">
+                    <div class="card-img-overlay d-flex justify-content-center align-items-center p-0">
+                        <br>
+                        <a href="{% url 'lmsapp:video' %}" class="btn btn-custom w-100 h-100 d-flex justify-content-center align-items-center">Learn more</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{ course.title }}</h5>
+                    <p class="card-text card-description">{{ course.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div> 
+
+<style>
+
+    /* Card styles */
+    .card {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        flex: 1;
+        transition: box-shadow 0.3s ease; /* Add a transition effect */
+
+    }
+    .card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 10px 10px rgba(0, 0, 0, 0.3);
+}
+.btn-custom {
+    background-color: #4CAF50; /* Green */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.btn-custom:hover {
+    background-color: #3e8e41; /* Darker green on hover */
+}
+
+.btn-custom:active {
+    background-color: #3e8e41; /* Darker green on click */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+    .card-deck {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* Center the cards */
+    }
+
+    /* ... rest of the styles ... */
+
+</style>
+{% endblock %}

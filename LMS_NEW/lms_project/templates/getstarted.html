@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LMS Portal</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar.bg-custom {
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    padding: 1rem;
+    font-family: 'Lobster', cursive;
+    color: white;
+}
+
+.hero-section {
+    height: calc(100vh - 56px); /* Adjusted for the navbar height */
+    background: linear-gradient(to right, #4facfe, #00f2fe);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.handwriting-text {
+    font-family: cursive;
+    font-size: 3em;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: .15em solid orange;
+    animation: typing 4s steps(40, end), blink-caret .75s step-end infinite;
+    animation-fill-mode: forwards; /* Ensures the final state is held */
+}
+
+.get-started-btn {
+    padding: 10px 30px;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.get-started-btn:hover {
+    background-color: #003d66;
+    transform: scale(1.05);
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: white }
+}
+
+/* Remove caret after typing animation */
+.handwriting-text::after {
+    content: '';
+    animation: blink-caret-end 4s steps(40, end);
+}
+
+@keyframes blink-caret-end {
+    from { border-color: white }
+    to { border-color: transparent }
+}
+</style>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-light bg-custom">
+        <a class="navbar-brand" href="#" style="color:white;font-size:40px;">
+            <img src="{% static 'images/getstarted.png' %}" width="70" height="70"  style="border-radius:110px;"class="d-inline-block align-top" alt="">
+            LMS
+        </a>
+    </nav>
+
+    <!-- Centered Text -->
+    <div class="hero-section d-flex justify-content-center align-items-center">
+        <div class="text-center">
+            <h1 class="handwriting-text">Educate yourself to elevate yourself.</h1>
+            <p>"Shaping futures through education and inspiration."</p>
+            <a href="{% url 'lmsapp:home_new' %}" class="btn btn-primary rounded-pill mt-4 get-started-btn">Get Started</a>
+        </div>
+    </div>
+
+    <script src="{% static 'js/jquery-3.5.1.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: #f6f5f7;
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+          0 10px 10px rgba(0, 0, 0, 0.22);
+        overflow: hidden;
+        max-width: 100%;
+        width: 900px; /* Adjust width as needed */
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          flex-direction: row;
+        }
+      }
+
+      .left-side {
+        background: url('{% static "images/registration.jpg" %}')
+          rgba(0, 0, 0, 0.5) center;
+        background-size: cover;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        max-width: 350px;
+        min-height: 200px; /* Adjust height as needed */
+      }
+
+      .right-side {
+        padding: 40px;
+        flex: 1;
+      }
+
+      .right-side h2 {
+        margin-bottom: 10px;
+        font-size: 24px;
+      }
+
+      .right-side form {
+        display: grid;
+        grid-template-columns: 2fr;
+      }
+
+      @media (min-width: 768px) {
+        .right-side form {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      .right-side form div {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .right-side form div label {
+        margin-bottom: 1px;
+        font-size: 14px;
+      }
+
+      .right-side form div label span {
+        color: red;
+      }
+
+      .right-side form div input {
+        padding: 10px; /* Increased padding */
+        border: 2px solid #ccc;
+        border-radius: 5px;
+      }
+
+      .right-side form div input[type="radio"] {
+        width: 15px;
+      }
+
+      .right-side form div.radio-group {
+        display: flex-start;
+        align-items: left;
+      }
+
+      .right-side form div.radio-group label {
+        margin-right: 10px;
+        margin-left: 5px;
+        font-size: 14px;
+      }
+
+      .right-side form button {
+        grid-column: 1 / -1;
+        padding: 12px; /* Increased padding */
+        border: none;
+        background-color: #007bff;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .right-side form button:hover {
+        background-color: #0056b3;
+      }
+
+      .error {
+        color: red;
+        font-size: 12px;
+        margin-top: 5px;
+      }
+
+      .password-container {
+        position: relative;
+        display: flex;
+        align-items: left;
+      }
+
+      .password-container input {
+        padding-right: 30px;
+      }
+
+      .password-container i {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-10%);
+        cursor: pointer;
+      }
+
+      .password-format {
+        position: absolute;
+        margin-top: 205px;
+        margin-left: 230px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+      }
+
+      .password-format i {
+        margin-right: 10px;
+        cursor: pointer;
+        color: #007bff;
+      }
+
+      .password-format-content {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #333;
+        font-size: 12px;
+        z-index: 1000;
+      }
+
+      .password-format-content::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 20px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent #fff transparent;
+      }
+
+      .password-format:hover .password-format-content,
+      .password-format:focus-within .password-format-content {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left-side"></div>
+      <div class="right-side">
+        <h2>Register</h2>
+        <form method="POST" action="./register">
+          {% csrf_token %} 
+          {% if messages %}
+          <div class="error">
+            {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div>
+            <label for="first_name">First Name<span>*</span></label>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              placeholder="Enter your first name"
+              required
+            />
+            <div class="error" id="first_name_error"></div>
+          </div>
+          <div>
+            <label for="last_name">Last Name<span>*</span></label>
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              placeholder="Enter your last name"
+              required
+            />
+            <div class="error" id="last_name_error"></div>
+          </div>
+          <div>
+            <label for="email">Email<span>*</span></label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+            <div class="error" id="email_error"></div>
+          </div>
+          <div>
+            <label for="mobile_no">Phone Number<span>*</span></label>
+            <input
+              type="text"
+              id="mobile_no"
+              name="mobile_no"
+              placeholder="Enter your phone number"
+              required
+            />
+            <div class="error" id="mobile_no_error"></div>
+          </div>
+          <div class="password-container">
+            <label for="password">Password<span>*</span></label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+            />
+            <i class="fas fa-eye" id="togglePassword"></i>
+            <div class="error" id="password_error"></div>
+          </div>
+          <div class="password-container">
+            <label for="confirm_password">Confirm Password<span>*</span></label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              placeholder="Confirm your password"
+              required
+            />
+            <i class="fas fa-eye" id="toggleConfirmPassword"></i>
+            <div class="error" id="confirm_password_error"></div>
+          </div>
+          <div class="password-format">
+            <i class="fas fa-info-circle"></i>
+            <div class="password-format-content">
+              <span> </span>
+            </div>
+          </div>
+          <button type="submit">Register</button>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Toggle password visibility
+      document
+        .getElementById("togglePassword")
+        .addEventListener("click", function () {
+          const passwordField = document.getElementById("password");
+          const type =
+            passwordField.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          passwordField.setAttribute("type", type);
+          this.classList.toggle("fa-eye-slash");
+        });
+
+      document
+        .getElementById("toggleConfirmPassword")
+        .addEventListener("click", function () {
+          const confirmPasswordField =
+            document.getElementById("confirm_password");
+          const type =
+            confirmPasswordField.getAttribute("type") === "password"
+              ? "text"
+              : "password";
+          confirmPasswordField.setAttribute("type", type);
+          this.classList.toggle("fa-eye-slash");
+        });
+
+      // Form validation (client-side)
+      document.querySelector("form").addEventListener("submit", function (e) {
+        let valid = true;
+
+        // Validate first name
+        const firstName = document.getElementById("first_name");
+        if (!/^[A-Za-z\s]+$/.test(firstName.value)) {
+          document.getElementById("first_name_error").innerText =
+            "Invalid first name.";
+          valid = false;
+        } else {
+          document.getElementById("first_name_error").innerText = "";
+        }
+
+        // Validate last name
+        const lastName = document.getElementById("last_name");
+        if (!/^[A-Za-z\s]+$/.test(lastName.value)) {
+          document.getElementById("last_name_error").innerText =
+            "Invalid last name.";
+          valid = false;
+        } else {
+          document.getElementById("last_name_error").innerText = "";
+        }
+
+        // Validate email
+        const email = document.getElementById("email");
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+          document.getElementById("email_error").innerText =
+            "Invalid email address.";
+          valid = false;
+        } else {
+          document.getElementById("email_error").innerText = "";
+        }
+
+        // Validate phone number
+        const phone = document.getElementById("mobile_no");
+        if (!/^\d{10}$/.test(phone.value)) {
+          document.getElementById("mobile_no_error").innerText =
+            "Invalid phone number. Must be 10 digits.";
+          valid = false;
+        } else {
+          document.getElementById("mobile_no_error").innerText = "";
+        }
+
+        // Validate password
+        const password = document.getElementById("password");
+        const passwordRegex =
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{10,}$/;
+        if (!passwordRegex.test(password.value)) {
+          document.getElementById("password_error").innerText =
+            "Password does not meet the requirements.";
+          valid = false;
+        } else {
+          document.getElementById("password_error").innerText = "";
+        }
+
+        // Validate confirm password
+        const confirmPassword = document.getElementById("confirm_password");
+        if (password.value !== confirmPassword.value) {
+          document.getElementById("confirm_password_error").innerText =
+            "Passwords do not match.";
+          valid = false;
+        } else {
+          document.getElementById("confirm_password_error").innerText = "";
+        }
+
+        if (!valid) {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>

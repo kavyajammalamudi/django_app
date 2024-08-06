@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Page</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .course-card {
+            margin: 10px 0;
+        }
+        .card-description {
+            height: 80px;
+            overflow: hidden;
+        }
+        .card-title {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .card-img-top {
+            height: 150px;
+            object-fit: cover;
+        }
+        .card-body {
+            color: black;
+            padding: 10px;
+        }
+        .btn-custom {
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            font-size: 0.9rem;
+        }
+        .btn-custom:hover {
+            background-color: #ff3e30;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Our Courses</h1>
+        <div class="row">
+            <!-- Course 1: DevOps -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/devops.png' %}" class="card-img-top" alt="DevOps Image">
+                    <div class="card-body">
+                        <h5 class="card-title">DevOps</h5>
+                        <p class="card-text card-description">
+                            Master the principles of DevOps and learn to automate and streamline development and operations processes.
+                        </p>
+                        <a href="{% url 'lmsapp:video' %}" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 2: JavaScript -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/js-1.png' %}" class="card-img-top" alt="JavaScript Image">
+                    <div class="card-body">
+                        <h5 class="card-title">JavaScript</h5>
+                        <p class="card-text card-description">
+                            Learn JavaScript, the most popular programming language for web development, and build interactive web applications.
+                        </p>
+                        <a href="#" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 3: HTML -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/html-1.jpg' %}" class="card-img-top" alt="HTML Image">
+                    <div class="card-body">
+                        <h5 class="card-title">HTML</h5>
+                        <p class="card-text card-description">
+                            Learn the basics of HTML and create structured web pages. This course covers elements, attributes, and best practices.
+                        </p>
+                        <a href="#" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 4: Linux -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/linux.jpeg' %}" class="card-img-top" alt="Linux Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Linux</h5>
+                        <p class="card-text card-description">
+                            Get hands-on experience with Linux, from basic commands to advanced system administration and scripting.
+                        </p>
+                        <a href="#" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <!-- Course 5: AWS -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/aws.jpg' %}" class="card-img-top" alt="AWS Image">
+                    <div class="card-body">
+                        <h5 class="card-title">AWS</h5>
+                        <p class="card-text card-description">
+                            Learn about Amazon Web Services (AWS) and gain expertise in cloud computing, storage, and networking services.
+                        </p>
+                        <a href="#" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Course 6: Java -->
+            <div class="col-lg-3 col-md-4 col-sm-6 course-card">
+                <div class="card">
+                    <img src="{% static 'images/java.jpg' %}" class="card-img-top" alt="Java Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Java</h5>
+                        <p class="card-text card-description">
+                            Learn Java programming, from basic syntax to advanced concepts like multithreading, collections, and network programming.
+                        </p>
+                        <a href="#" class="btn btn-custom">Demo Session</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <!-- Footer content -->
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

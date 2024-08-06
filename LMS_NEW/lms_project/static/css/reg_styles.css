@@ -1,0 +1,151 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f6f5f7;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    max-width: 100%;
+    width: 900px; /* Adjust width as needed */
+}
+
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+}
+
+.left-side {
+    background: url('../images/reg.jpg') rgba(0, 0, 0, 0.5) no-repeat center center;
+    background-size: cover;
+    color: #fff;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.left-side h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.left-side p {
+    font-size: 14px;
+}
+
+.right-side {
+    padding: 40px;
+    flex: 1;
+}
+
+.right-side h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.right-side form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .right-side form {
+        grid-template-columns: 1fr;
+    }
+}
+
+.right-side form div {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side form div label {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.right-side form div label span {
+    color: red;
+}
+
+.right-side form div input,
+.right-side form div select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.right-side form div input[type="radio"] {
+    width: auto;
+}
+
+.right-side form div.radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.right-side form div.radio-group label {
+    margin-right: 10px;
+    margin-left: 5px;
+    font-size: 14px;
+}
+
+.right-side form button {
+    grid-column: 1 / -1;
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.right-side form button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.messages {
+    margin-bottom: 20px;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}

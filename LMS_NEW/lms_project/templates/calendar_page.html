@@ -1,0 +1,27 @@
+<!-- templates/dashboard/dashboard.html -->
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="dashboard">
+    <h1>This is calendar Page</h1>
+    <div class="cards">
+        {% for course in courses %}
+        <div class="card">
+            <h3>{{ course.title }}</h3>
+            <p>{{ course.description }}</p>
+            <a href="{{ course.link }}" class="btn">Learn more</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="resources">
+        <h2>Resources</h2>
+        <ul>
+            {% for resource in resources %}
+            <li><a href="{{ resource.link }}">{{ resource.title }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

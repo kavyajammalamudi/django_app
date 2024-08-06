@@ -1,0 +1,209 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f6f5f7;
+    padding: 20px;
+  }
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+      0 10px 10px rgba(0, 0, 0, 0.22);
+    overflow: hidden;
+    max-width: 100%;
+    width: 900px;
+    /* Adjust width as needed */
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      flex-direction: row;
+    }
+  }
+
+  .left-side {
+    background: url("../images/registration.jpg") rgba(0, 0, 0, 0.5) center;
+    background-size: cover;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    max-width: 300px;
+    min-height: 200px;
+  }
+
+  .right-side {
+    background-color: #dbdbdb;
+    padding: 25px;
+    flex: 2.2;
+  }
+
+  .right-side h2 {
+    margin-bottom: 10px;
+    font-size: 24px;
+  }
+
+  .right-side form {
+    display: grid;
+    gap: 10px;
+  }
+
+  @media (min-width: 768px) {
+    .right-side form {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .right-side form div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .right-side form div label {
+    margin-bottom: 6px;
+    font-size: 17px;
+  }
+
+  .right-side form div label span {
+    color: red;
+  }
+
+  .right-side form div input,
+  .right-side form div select {
+    padding: 12px;
+    /* Increased padding */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+  }
+
+  .right-side form div input[type="radio"] {
+    width: auto;
+  }
+
+  .right-side form div.radio-group {
+    display: flex;
+    align-items: center;
+  }
+
+  .right-side form div.radio-group label {
+    margin-right: 10px;
+    margin-left: 5px;
+    font-size: 14px;
+  }
+
+  .right-side form button {
+    grid-column: 1 / -1;
+    padding: 12px;
+    /* Increased padding */
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .right-side form button:hover {
+    background-color: #0056b3;
+  }
+
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .password-container {
+    position: relative;
+    display: flex;
+    align-items: left;
+  }
+
+  .password-container input {
+    padding-right: 25px;
+  }
+
+  .password-container i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }
+
+  .password-format {
+    margin-left: 278px;
+    position: absolute;
+    margin-top: 38px;
+    align-items: center;
+  }
+
+  .password-format i {
+    cursor: pointer;
+    color: #007bff;
+    position: relative;
+  }
+
+  .password-format-content {
+    display: none;
+    position: absolute;
+    top: 160%;
+    width: 300px;
+    left: -4px;
+    background: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px fff;
+    color: #333;
+    font-size: 12px;
+    z-index: 1000;
+  }
+
+  .password-format-content::before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 7px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #fff transparent;
+  }
+
+  .password-format:hover .password-format-content,
+  .password-format:focus-within .password-format-content {
+    display: grid;
+    justify-items: center;
+  }
+
+  .password-confirm {
+    position: relative;
+    display: flex;
+    align-items: left;
+  }
+
+  .password-confirm input {
+    padding-right: 30px;
+  }
+
+  .password-confirm i {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+  }

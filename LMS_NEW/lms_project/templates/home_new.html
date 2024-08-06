@@ -1,0 +1,361 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Home</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Playball&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="{% static 'lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/owlcarousel/owl.carousel.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/home_bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/home_style.css' %}" rel="stylesheet">
+</head>
+
+<style>
+.circle-grid {
+    display: grid;
+    grid-template-areas: 
+        ". small1 large small2 ."
+        "small3 large large large small4"
+        ". small3 large small4 .";
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.circle-large {
+    width: 200px;
+    height: 200px;
+    grid-area: large;
+}
+
+.circle-small {
+    width: 100px;
+    height: 100px;
+}
+
+#small1 {
+    grid-area: small1;
+}
+
+#small2 {
+    grid-area: small2;
+}
+
+#small3 {
+    grid-area: small3;
+}
+
+#small4 {
+    grid-area: small4;
+}
+
+.circle-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px; /* Adjust as needed */
+    height: 300px; /* Adjust as needed */
+    margin-left:80px;
+}
+
+.circle {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.large-circle {
+    width: 300px; /* Adjust size as needed */
+    height: 300px; /* Adjust size as needed */
+    animation: fadeIn 2s ease-in-out;
+}
+
+.small-circle {
+    width: 100px; /* Adjust size as needed */
+    height: 100px; /* Adjust size as needed */
+    animation: fadeIn 3s ease-in-out;
+}
+
+#small1 {
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#small2 {
+    top: 50%;
+    right: 0;
+    transform: translate(50%, -50%);
+}
+
+#small3 {
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 50%);
+}
+
+#small4 {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.contact-section {
+    padding: 60px 0;
+}
+
+.contact-section h2 {
+    margin-bottom: 40px;
+}
+
+.contact-form {
+    margin: 0 auto; /* Center the form */
+    max-width: 600px; /* Set a maximum width */
+}
+
+.contact-form .form-control {
+    border-radius: 20px;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrap {
+    flex: 1;
+}
+
+.footer {
+    background-color: #343a40;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+</style>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <div class="container-fluid nav-bar">
+        <div class="container">
+            <nav class="navbar navbar-light navbar-expand-lg py-4">
+                <a href="{% url 'lmsapp:home_new' %}" class="navbar-brand">
+                    <h1 class="text-primary fw-bold mb-0">L<span class="text-dark">M</span>S</h1>
+                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                        <a href="{% url 'lmsapp:home_new' %}" class="nav-item nav-link active">Home</a>
+                        <a href="#about" class="nav-item nav-link">About</a>
+                        <a href="#contact" class="nav-item nav-link">Contact</a>
+                    </div>
+                    <a href="{% url 'lmsapp:login' %}" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Login</a>&nbsp;&nbsp;&nbsp;
+                    <a href="{% url 'lmsapp:register' %}" class="btn btn-primary py-2 px-4 d-none d-xl-inline-block rounded-pill">Sign Up</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+    <!-- Modal Search Start -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content rounded-0">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Search by keyword</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body d-flex align-items-center">
+                    <div class="input-group w-75 mx-auto d-flex">
+                        <input type="search" class="form-control bg-transparent p-3" placeholder="keywords" aria-describedby="search-icon-1">
+                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal Search End -->
+
+    <!-- Hero Start -->
+    <div class="container-fluid bg-light py-6 my-6 mt-0">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-7 col-md-12">
+                    <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-4 animated bounceInDown">Welcome to LMS</small>
+                    <h1 class="display-1 mb-4 animated bounceInDown">Learn <span class="text-primary">Grow</span> Achieve</h1>
+                    <h3 class="mb-4 animated bounceInDown">"The best platform for continuous learning."</h3>
+                    <a href="{% url 'lmsapp:course' %}" class="btn btn-primary border-0 rounded-pill py-3 px-4 px-md-5 me-4 animated bounceInLeft">Courses</a>
+                </div>
+
+                <div class="col-lg-5 col-md-12">
+                    <div class="circle-container">
+                        <div class="circle large-circle">
+                            <img src="{% static 'images/linux.jpeg' %}" alt="Large Circle Image">
+                        </div>
+                        <div class="circle small-circle" id="small1">
+                            <img src="{% static 'images/html-1.jpg' %}" alt="Small Circle Image 1">
+                        </div>
+                        <div class="circle small-circle" id="small2">
+                            <img src="{% static 'images/aws.jpg' %}" alt="Small Circle Image 2">
+                        </div>
+                        <div class="circle small-circle" id="small3">
+                            <img src="{% static 'images/devops.png' %}" alt="Small Circle Image 3">
+                        </div>
+                        <div class="circle small-circle" id="small4">
+                            <img src="{% static 'images/java.jpg' %}" alt="Small Circle Image 4">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+       <!-- About Us Section Start -->
+       <div class="section" id="about">
+        <div class="container">
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-5 wow bounceInUp" data-wow-delay="0.1s">
+                    <img src="{% static 'images/logo-1.jpeg' %}" class="img-fluid rounded" alt="LMS">
+                </div>
+                <div class="col-lg-7 wow bounceInUp" data-wow-delay="0.3s">
+                    <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">About Us</small>
+                    <h1 class="display-5 mb-4">Empowering Your Learning Journey</h1>
+                    <p class="mb-4">At our Learning Management Platform, we provide comprehensive courses designed to enhance your skills and knowledge. From front-end development with HTML and CSS to mastering server-side scripting with Python and Java, our platform offers a wide range of courses to meet your learning needs.</p>
+                    <div class="row g-4 text-dark mb-5">
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Innovative Learning Tools
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>24/7 Customer Support
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Customizable Learning Paths
+                        </div>
+                        <div class="col-sm-6">
+                            <i class="fas fa-share text-primary me-2"></i>Trusted by Industry Leaders
+                        </div>
+                    </div>
+                    <a href="" class="btn btn-primary py-3 px-5 rounded-pill">Learn More<i class="fas fa-arrow-right ps-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About Us Section End -->
+
+    <!-- Contact Section Start -->
+    <div class="section1" id="contact">
+        <div class="container-fluid menu bg-light py-6 my-6">
+            <div class="text-center wow bounceInUp" data-wow-delay="0.1s">
+                <small class="d-inline-block fw-bold text-dark text-uppercase bg-light border border-primary rounded-pill px-4 py-1 mb-3">Contact Us</small>
+                <h1 class="display-5 mb-5">...  </h1>
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <form method="post" action="#">
+                            {% csrf_token %}
+                            <div class="form-group mb-3">
+                                <label for="name">Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required aria-label="Name">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required aria-label="Email">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter subject" required aria-label="Subject">
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Enter your message" required aria-label="Message"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    <!-- Contact End -->
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2024 LMS. All Rights Reserved.</p>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary btn-lg btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="{% static 'lib/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js' %}"></script>
+      <!-- Hide Spinner -->
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("spinner").classList.remove("show");
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registration Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'css/TEST_styles.css' %}" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="left-side"></div>
+    <div class="right-side">
+      <h2>Registration Form</h2>
+      <form id="registration-form" action={% url 'lmsapp:register' %} method="post">
+        {% csrf_token %}
+
+        <div>
+          <label for="first-name">First Name <span>*</span></label>
+          <input type="text" id="first-name" name="first_name" required autocomplete="off" />
+          <div class="error" id="first-name-error"></div>
+        </div>
+        <div>
+          <label for="last-name">Last Name <span>*</span></label>
+          <input type="text" id="last-name" name="last_name" required autocomplete="off" />
+          <div class="error" id="last-name-error"></div>
+        </div>
+        <div>
+          <label for="email">Email <span>*</span></label>
+          <input type="email" id="email" name="email" required autocomplete="off" />
+          <div class="error" id="email-error"></div>
+        </div>
+        <div>
+          <label for="phone">Phone Number <span>*</span></label>
+          <input type="text" id="phone" name="mobile_no" required autocomplete="off" />
+          <div class="error" id="phone-error"></div>
+        </div>
+
+        <div>
+          <label for="password">Password <span>*</span></label>
+          <div class="password-container">
+            <input type="password" id="password" name="password1" required autocomplete="off" />
+            <i class="fas fa-eye" id="toggle-password"></i>
+          </div>
+          <div class="error" id="password-error"></div>
+          <div class="password-format">
+            <i class="fas fa-info-circle"></i>
+            <span id="password-format" class="password-format-content">
+              <p>Password must meet the following requirements:</p>
+              <ul>
+                <li>At least 10 characters long</li>
+                <li>Contains at least one uppercase letter</li>
+                <li>Contains at least one lowercase letter</li>
+                <li>Contains at least one number</li>
+                <li>Contains at least one special character</li>
+              </ul>
+            </span>
+          </div>
+        </div>
+        <div>
+          <label for="confirm_password">Confirm Password <span>*</span></label>
+          <div class="password-confirm">
+            <input type="password" id="confirm_password" name="password2" required autocomplete="off" />
+            <i class="fas fa-eye" id="toggle-confirm-password"></i>
+          </div>
+          <div class="error" id="confirm-password-error"></div>
+        </div>
+        {% if messages %}
+        <div class="error">
+          {% for message in messages %}
+          <div class="{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <br>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script src="{% static 'js/test.js' %}"></script>
+</body>
+
+</html>

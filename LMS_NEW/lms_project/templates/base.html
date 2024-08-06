@@ -1,0 +1,226 @@
+<!-- templates/base.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<style>
+    /* static/css/styles.css */
+/* static/css/styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow-x:hidden;
+}
+
+.sidebar {
+    width: 200px;
+    background: #333;
+    color: #fff;
+    height: 100vh;
+    position: fixed;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.sidebar .logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    height: 100px; /* Adjust the height as necessary */
+}
+
+.sidebar .logo img {
+    max-width: 50%;
+    height: auto;
+    border-radius: 50px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin: 10px 0;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #575757;
+}
+
+.sidebar ul li a i {
+    margin-right: 10px;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    margin-bottom: 30px;
+}
+
+.sidebar .logout a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+.sidebar .logout a:hover {
+    background: #575757;
+}
+
+.sidebar .logout a i {
+    margin-right: 10px;
+}
+
+.top-navbar {
+    height: 80px;
+    background: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-left: 200px;
+    box-sizing: border-box;
+}
+
+.top-navbar .top-navbar-left {
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar .top-navbar-left h3 {
+    margin: 0;
+    margin-left:30px;
+}
+
+.top-navbar .top-navbar-middle {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.top-navbar .top-navbar-middle input {
+    width: 110%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+
+.top-navbar .top-navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar .top-navbar-right i {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.dashboard .cards {
+    display: flex;
+    gap: 20px;
+}
+
+.dashboard .card {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.dashboard .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+</style>
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <img src="{% static 'images/main_logo.png' %}" alt="Logo">
+        </div>
+        <h2>Student</h2>
+        <ul>
+            <li><a href="{% url 'lmsapp:dashboard2' %}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="{% url 'lmsapp:dash_course' %}"><i class="fas fa-book"></i> Courses</a></li>
+            <li><a href="{% url 'lmsapp:resource' %}"><i class="fas fa-folder"></i> Resources</a></li>
+            <li><a href="{% url 'lmsapp:calendar' %}"><i class="fas fa-calendar-alt"></i> Calendar</a></li>
+            <li><a href="{% url 'lmsapp:profile' %}"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a href="{% url 'lmsapp:contact' %}"><i class="fas fa-envelope"></i> Contact Us</a></li>
+        </ul>
+        <div class="logout">
+            <a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Log out</a>
+        </div>
+    </div>
+    <div class="top-navbar">
+        <div class="top-navbar-left">
+            <h3> Welcome {{user.first_name}}</h3>
+        </div> 
+        <div class="top-navbar-middle">
+            <form action="{% url 'lmsapp:search' %}" method="get">
+                <input type="text" name="q" placeholder="Search...">
+            </form>
+        </div>
+        <div class="top-navbar-right">
+            <i class="fas fa-bell"></i>
+        </div>
+    </div>
+    <div class="main-content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <script>
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent the default link behavior
+            var userConfirmation = confirm("Are you sure you want to logout?");
+            if (userConfirmation) {
+                window.location.href = "{% url 'lmsapp:home_new' %}";
+            }
+        });
+    </script>
+</body>
+</html>
